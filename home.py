@@ -4,6 +4,7 @@ import json
 import xml.etree.ElementTree as ET
 import config
 
+# getting developer key from config.py file
 dev_key = config.developer_key
 
 class GoodreadsAPIClient:
@@ -47,7 +48,7 @@ class GoodreadsAPIClient:
     def make_book_api_url(self):
         """use book id and developer key to make API link"""
 
-        # format API_LINK = "https://www.goodreads.com/book/show/<book id>.xml?key=<your dev key>""
+        # format API_LINK = "https://www.goodreads.com/book/show/<book id>.xml?key=<your dev key>"
 
         self.book_url = f"https://www.goodreads.com/book/show/{self.book_id}.xml?key={self.key}"
 
