@@ -109,10 +109,3 @@ if __name__ == "__main__":
 
     except:
         print("Output:\nraise an exception InvalidGoodreadsURL")
-
-
-
-# https://www.goodreads.com/book/show/12177850-a-song-of-ice-and-fire
-# https://www.goodreads.com/book/show/12067.Good_Omens
-# https://www.gooreads.com/book/show/22034.The_Godfather
-# https://www.goodreads.com/book/show/The_Godfather
