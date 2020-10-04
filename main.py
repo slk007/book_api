@@ -11,6 +11,7 @@ class myException(Exception):
     pass
 
 class GoodreadsAPIClient:
+    """class to input the url and Output the details of a book using GOODREADS API"""
 
     def __init__(self):
 
