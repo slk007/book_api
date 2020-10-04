@@ -16,7 +16,7 @@ pip install requests
 # How to use:
 
 **make a config.py file within book_api folder**
-inside config.py:
+**add below link in config.py**
 ```
 developer_key = "<keep your GOODREAD developer key here>"
 ```
