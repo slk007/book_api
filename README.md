@@ -11,7 +11,7 @@ pip install requests
 
 **To run the main file:**
 ```
-python home.py
+python main.py
 ```
 Enter your url when it asks for input
 

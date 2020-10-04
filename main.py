@@ -7,6 +7,9 @@ import config
 # getting developer key from config.py file
 dev_key = config.developer_key
 
+class myException(Exception):
+    pass
+
 class GoodreadsAPIClient:
 
     def __init__(self):
@@ -30,10 +33,10 @@ class GoodreadsAPIClient:
                 self.book_id = word_list[0]
             else:
                 # raise the exception when book id is not found in the URL
-                raise Exception("InvalidGoodreadsURL")
+                raise myException("InvalidGoodreadsURL")
         else:
             # raise exception when the first half of the URL does not match the req
-            raise Exception("InvalidGoodreadsURL")
+            raise myException("InvalidGoodreadsURL")
 
 
     def input_url_from_user(self):
@@ -42,7 +45,7 @@ class GoodreadsAPIClient:
         self.input_url = input("Input: ")
         if self.input_url[0] == '"' and self.input_url[-1] == '"':
             self.input_url = self.input_url[1:-1]
-        
+
 
 
     def make_book_api_url(self):
@@ -71,7 +74,7 @@ class GoodreadsAPIClient:
             self.book_details["num_pages"] = book.find('num_pages').text
             self.book_details["image_url"] = book.find('image_url').text
             self.book_details["publication_year"] = book.find('publication_year').text
-            
+
             # getting list of all the authors
             authors = book.find('authors')
             if authors:
