@@ -28,6 +28,9 @@ python main.py
 ```
 Enter your url when it asks for input
 
+![book_api_snap](https://github.com/slk007/book_api/blob/master/book_api_snap.png)
+
+
 **To run the test file:**
 ```
 python test_p.py
