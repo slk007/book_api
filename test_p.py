@@ -1,4 +1,4 @@
-from home import GoodreadsAPIClient
+from main import GoodreadsAPIClient
 import config
 import unittest
 
@@ -21,11 +21,11 @@ class SimpleTest(unittest.TestCase):
     def test_make_book_api_url(self):
 
         url = "https://www.goodreads.com/book/show/12177850.xml?key="+ dev_key
-        
+
         self.obj.book_id = "12177850"
         self.obj.make_book_api_url()
         book_url = self.obj.book_url
-        
+
         self.assertEqual(book_url, url)
 
     def test_get_book_details(self):

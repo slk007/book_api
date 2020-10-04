@@ -1,4 +1,4 @@
-from home import GoodreadsAPIClient, myException
+from main import GoodreadsAPIClient, myException
 import config
 import unittest
 

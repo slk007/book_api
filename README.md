@@ -1,6 +1,6 @@
 # book api
 
-**use GOODREADS API to get details of specific books**
+**get details of specific books using GOODREADS API link**
 
 * Inside:
   * API
@@ -8,12 +8,19 @@
   * testing
   * xml response
 
-## How to use:
-
 **Requirements**
 ```
 pip install requests
 ```
+
+# How to use:
+
+**make a config.py file within book_api folder**
+inside config.py:
+```
+developer_key = "<keep your GOODREAD developer key here>"
+```
+
 
 **To run the main file:**
 ```
