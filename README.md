@@ -2,6 +2,12 @@
 
 **use GOODREADS API to get details of specific books**
 
+* Inside:
+  * API
+  * requests
+  * testing
+  * xml response
+
 ## How to use:
 
 **Requirements**
@@ -17,5 +23,6 @@ Enter your url when it asks for input
 
 **To run the test file:**
 ```
-python testing.py
+python test_p.py
+python test_n.py
 ```
