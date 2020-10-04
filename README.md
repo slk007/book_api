@@ -5,7 +5,7 @@
 * Inside:
   * API
   * requests
-  * testing
+  * [test scripts](https://github.com/slk007/book_api/raw/master/test%20scripts.xlsx)
   * xml response
 
 **Requirements**
