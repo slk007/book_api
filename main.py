@@ -40,7 +40,7 @@ class GoodreadsAPIClient:
             else:
                 # raise the exception when book id is not found in the URL
                 raise myException("InvalidGoodreadsURL")
-            
+
         elif self.input_url[0:35] == "http://www.goodreads.com/book/show/":
             n=35
 
@@ -152,3 +152,4 @@ if __name__ == "__main__":
 # https://www.goodreads.com/book/show/12067.Good_Omens
 # "https://www.gooreads.com/book/show/22034.The_Godfather"
 # "https://www.goodreads.com/book/show/The_Godfather"
+# "http://www.gooreads.com/book/show/22034.The_Godfather"
