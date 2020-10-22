@@ -3,6 +3,7 @@ import re
 import json
 import xml.etree.ElementTree as ET
 import config
+import time
 
 # getting developer key from config.py file
 dev_key = config.developer_key
@@ -24,10 +25,26 @@ class GoodreadsAPIClient:
 
     def get_book_id_from_input_url(self):
         """function to extract book id from the input url"""
+	    #(https:\/\/www.goodreads.com\/book\/show\/|http:\/\/www.goodreads.com\/book\/show\/)
+        # http://www.goodreads.com/book/show/12177850-a-song-of-ice-and-fire
 
+        n = 0
         if self.input_url[0:36] == "https://www.goodreads.com/book/show/":
+            n = 36
 
-            remaining_url = self.input_url[36:]
+            remaining_url = self.input_url[n:]
+            word_list = re.split('[.-]' ,remaining_url)
+
+            if word_list[0].isnumeric():
+                self.book_id = word_list[0]
+            else:
+                # raise the exception when book id is not found in the URL
+                raise myException("InvalidGoodreadsURL")
+            
+        elif self.input_url[0:35] == "http://www.goodreads.com/book/show/":
+            n=35
+
+            remaining_url = self.input_url[n:]
             word_list = re.split('[.-]' ,remaining_url)
 
             if word_list[0].isnumeric():
@@ -42,10 +59,15 @@ class GoodreadsAPIClient:
 
     def input_url_from_user(self):
         """function to get input from user"""
-
-        self.input_url = input("Input: ")
-        if self.input_url[0] == '"' and self.input_url[-1] == '"':
-            self.input_url = self.input_url[1:-1]
+        i = input("Input: ")
+        if i == 'exit':
+            return False
+        else:
+            self.input_url = i
+            if self.input_url[0] == '"' and self.input_url[-1] == '"':
+                self.input_url = self.input_url[1:-1]
+            
+            return True
 
 
 
@@ -64,6 +86,7 @@ class GoodreadsAPIClient:
             # gives response for the request from the API url
             response = requests.get(self.book_url)
 
+            
             # using ElementTree to store the response content in a tree
             root = ET.fromstring(response.content)
             book = root.find('book')
@@ -90,23 +113,42 @@ class GoodreadsAPIClient:
 
 if __name__ == "__main__":
 
-    obj = GoodreadsAPIClient()
+    init_time = time.time()
 
-    obj.input_url_from_user()
+    while(True):
 
-    try:
-        obj.get_book_id_from_input_url()
-        obj.make_book_api_url()
+        obj = GoodreadsAPIClient()
 
-        try:
-            obj.get_book_details()
+        if obj.input_url_from_user():
 
-            # converting the output into json format
-            j_book_details = json.dumps(obj.book_details, indent=4)
-            print("Output:\n", j_book_details)
+            try:
+                obj.get_book_id_from_input_url()
+                obj.make_book_api_url()
+            except:
+                print("Output:\nraise an exception InvalidGoodreadsURL")
+                exit()
 
-        except:
-            print("Output:\n", {})
+            try:
+                obj.get_book_details()
 
-    except:
-        print("Output:\nraise an exception InvalidGoodreadsURL")
+                # converting the output into json format
+                j_book_details = json.dumps(obj.book_details, indent=4)
+
+                print("Output:\n", j_book_details)
+            except:
+                print("Output:\n", {})
+                exit()
+
+        
+            # end_time = time.time()
+            # print(end_time - init_time)
+
+        else:
+            exit()
+
+
+# "https://www.goodreads.com/book/show/12177850-a-song-of-ice-and-fire"
+# "http://www.goodreads.com/book/show/12177850-a-song-of-ice-and-fire"
+# https://www.goodreads.com/book/show/12067.Good_Omens
+# "https://www.gooreads.com/book/show/22034.The_Godfather"
+# "https://www.goodreads.com/book/show/The_Godfather"
